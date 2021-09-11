@@ -46,12 +46,12 @@ class Env2Kube extends Command {
         this.log(`Converting ${args.env_file} to ${outputFileName}`);
 
         const env = await this.parseEnvFile(args.env_file);
-        this.log(this.generateYaml(env, flags.name, flags.namespace));
+        const yaml = this.generateYaml(env, flags.name, flags.namespace);
+        await fs.writeFile(outputFileName, yaml);
     }
 
     private generateYaml(env: any, name: string, namespace: string) {
-        return `
-apiVersion: v1
+        return `apiVersion: v1
 kind: Secret
 metadata:
 ${this.generateMetadata(name, namespace)}
