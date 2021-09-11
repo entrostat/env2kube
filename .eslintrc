@@ -2,5 +2,12 @@
   "extends": [
     "oclif",
     "oclif-typescript"
-  ]
+  ],
+  "rules": {
+    "object-curly-spacing": "off",
+    "indent": "off",
+    "semi": "off",
+    "quotes": "off",
+    "no-await-in-loop": "off"
+  }
 }
