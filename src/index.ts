@@ -1,28 +1,45 @@
 import { Command, flags } from '@oclif/command';
 
 class Env2Kube extends Command {
-    static description = 'describe the command here';
+    static description = `Convert a .env file to a Kubernetes secret yaml file.
+
+        All of the values are base64 encoded and the secret can be used in the envFrom option on your deployments. The name of the yaml file defaults to the same as the environment file without the "dot" in front.`;
+
+    static examples = [
+        `env2kube .env`,
+        `env2kube .env --output=./secrets/env.yaml`,
+    ];
 
     static flags = {
-        // add --version flag to show CLI version
-        version: flags.version({ char: 'v' }),
-        help: flags.help({ char: 'h' }),
-        // flag with a value (-n, --name=VALUE)
-        name: flags.string({ char: 'n', description: 'name to print' }),
-        // flag with no value (-f, --force)
-        force: flags.boolean({ char: 'f' }),
+        output: flags.string({
+            char: 'o',
+            description: 'The output file path and name',
+            required: false,
+        }),
+        namespace: flags.string({
+            char: 'N',
+            description: 'The namespace the secret should be applied under',
+            default: 'default',
+        }),
+        name: flags.string({
+            char: 'n',
+            description: 'The name of the secret',
+            required: true,
+        }),
     };
 
-    static args = [{ name: 'file' }];
+    static args = [
+        {
+            name: 'env_file',
+            required: true,
+            description:
+                'The name of the environment file that you would like to convert.',
+        },
+    ];
 
     async run() {
         const { args, flags } = this.parse(Env2Kube);
-
-        const name = flags.name ?? 'world';
-        this.log(`hello ${name} from ./src/index.ts`);
-        if (args.file && flags.force) {
-            this.log(`you input --force and --file: ${args.file}`);
-        }
+        this.log(`Converting ${args.env_file} to secret.yaml`);
     }
 }
 
