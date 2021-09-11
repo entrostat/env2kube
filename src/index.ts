@@ -39,7 +39,15 @@ class Env2Kube extends Command {
 
     async run() {
         const { args, flags } = this.parse(Env2Kube);
-        this.log(`Converting ${args.env_file} to secret.yaml`);
+        const outputFileName = this.getOutputName(args.env_file, flags.output);
+        this.log(`Converting ${args.env_file} to ${outputFileName}`);
+    }
+
+    private getOutputName(envFileName: string, outputName?: string) {
+        if (outputName) {
+            return outputName;
+        }
+        return envFileName.replace(/^\./, '');
     }
 }
 
