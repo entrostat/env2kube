@@ -1,4 +1,7 @@
 import { Command, flags } from '@oclif/command';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import * as fs from 'fs-extra';
 
 class Env2Kube extends Command {
     static description = `Convert a .env file to a Kubernetes secret yaml file.
@@ -41,6 +44,49 @@ class Env2Kube extends Command {
         const { args, flags } = this.parse(Env2Kube);
         const outputFileName = this.getOutputName(args.env_file, flags.output);
         this.log(`Converting ${args.env_file} to ${outputFileName}`);
+
+        const env = await this.parseEnvFile(args.env_file);
+        this.log(this.generateYaml(env, flags.name, flags.namespace));
+    }
+
+    private generateYaml(env: any, name: string, namespace: string) {
+        return `
+apiVersion: v1
+kind: Secret
+metadata:
+${this.generateMetadata(name, namespace)}
+type: Opaque
+data:
+${this.generateData(env)}
+`;
+    }
+
+    private generateMetadata(name: string, namespace: string) {
+        return `  name: ${name}
+  namespace: ${namespace}`;
+    }
+
+    private generateData(env: any) {
+        return Object.keys(env)
+            .map(
+                (key) =>
+                    `  ${key}: ${Buffer.from(env[key]).toString('base64')}`,
+            )
+            .join('\n');
+    }
+
+    private async parseEnvFile(envFileArg: string) {
+        const envPath = path.resolve(envFileArg);
+        this.log(`Parsing ${envPath}`);
+        const env = dotenv.parse(
+            await fs.readFile(envPath).then((d) => d.toString()),
+        );
+
+        this.log(`Parsed ${Object.keys(env).length} variables`);
+        Object.keys(env)
+            .sort()
+            .forEach((key) => this.log(`    - ${key}`));
+        return env;
     }
 
     private getOutputName(envFileName: string, outputName?: string) {
