@@ -47,7 +47,7 @@ class Env2Kube extends Command {
         if (outputName) {
             return outputName;
         }
-        return envFileName.replace(/^\./, '');
+        return `${envFileName.replace(/^\./, '')}.yaml`;
     }
 }
 
