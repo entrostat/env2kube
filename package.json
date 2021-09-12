@@ -55,7 +55,10 @@
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "release": "standard-version --sign",
+    "release:no-sign": "standard-version",
+    "release:dry-run": "standard-version --dry-run"
   },
   "types": "lib/index.d.ts"
 }
