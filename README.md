@@ -23,7 +23,7 @@ $ npm install -g @entrostat/env2kube
 $ env2kube COMMAND
 running command...
 $ env2kube (-v|--version|version)
-@entrostat/env2kube/1.0.4 linux-x64 node-v14.17.3
+@entrostat/env2kube/1.0.5 linux-x64 node-v14.17.3
 $ env2kube --help [COMMAND]
 USAGE
   $ env2kube COMMAND
