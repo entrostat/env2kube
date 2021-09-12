@@ -76,6 +76,7 @@ ${this.generateData(env)}
 
     private generateData(env: any) {
         return Object.keys(env)
+            .filter((key) => env[key])
             .map(
                 (key) =>
                     `  ${key}: ${Buffer.from(env[key]).toString('base64')}`,
@@ -93,6 +94,7 @@ ${this.generateData(env)}
         this.log(`Parsed ${Object.keys(env).length} variables`);
         Object.keys(env)
             .sort()
+            .filter((key) => env[key])
             .forEach((key) => this.log(`    - ${key}`));
         return env;
     }
