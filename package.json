@@ -1,7 +1,7 @@
 {
   "name": "env2kube",
   "description": "Converts an env file to a Kubernetes secret yaml file that you can apply",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "author": "Kerren @Kerren-Entrostat",
   "bin": {
     "env2kube": "./bin/run"
@@ -11,12 +11,16 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "dotenv": "^10.0.0",
+    "fs-extra": "^10.0.0",
     "tslib": "^1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
     "@oclif/test": "^1",
     "@types/chai": "^4",
+    "@types/dotenv": "^8.2.0",
+    "@types/fs-extra": "^9.0.12",
     "@types/mocha": "^5",
     "@types/node": "^10",
     "chai": "^4",
@@ -51,7 +55,10 @@
     "posttest": "eslint . --ext .ts --config .eslintrc",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "release": "standard-version --sign",
+    "release:no-sign": "standard-version",
+    "release:dry-run": "standard-version --dry-run"
   },
   "types": "lib/index.d.ts"
 }
