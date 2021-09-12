@@ -8,8 +8,8 @@ You're able to specify the name and namespace for the secret and the output file
 It's weird, I did search for similar libraries but didn't find any until now. If you're looking for an alternative, here's a link to a previously existing one [https://www.npmjs.com/package/env2kube](https://www.npmjs.com/package/env2kube).
 
 [![oclif](https://img.shields.io/badge/cli-oclif-brightgreen.svg)](https://oclif.io)
-[![Version](https://img.shields.io/npm/v/env2kube.svg)](https://npmjs.org/package/env2kube)
-[![Downloads/week](https://img.shields.io/npm/dw/env2kube.svg)](https://npmjs.org/package/env2kube)
+[![Version](https://img.shields.io/npm/v/env2kube.svg)](https://npmjs.org/package/@entrostat/env2kube)
+[![Downloads/week](https://img.shields.io/npm/dw/env2kube.svg)](https://npmjs.org/package/@entrostat/env2kube)
 [![License](https://img.shields.io/npm/l/env2kube.svg)](https://github.com/entrostat/env2kube/blob/master/package.json)
 
 <!-- toc -->
