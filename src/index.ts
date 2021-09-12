@@ -50,6 +50,13 @@ class Env2Kube extends Command {
         await fs.writeFile(outputFileName, yaml);
     }
 
+    /**
+     * TODO: Look at pulling this out into a Handlebars template
+     * @param env The parsed environment
+     * @param name The name of the secret
+     * @param namespace The namespace that the secret should be stored in
+     * @private
+     */
     private generateYaml(env: any, name: string, namespace: string) {
         return `apiVersion: v1
 kind: Secret
@@ -89,6 +96,14 @@ ${this.generateData(env)}
         return env;
     }
 
+    /**
+     * Takes the output name specified by the user or defaults it to the name
+     * of the env file with .yaml at the end and without the "dot" at the front
+     * if there is one
+     * @param envFileName The name of the environment file
+     * @param outputName The name of the file specified by the user
+     * @private
+     */
     private getOutputName(envFileName: string, outputName?: string) {
         if (outputName) {
             return outputName;
