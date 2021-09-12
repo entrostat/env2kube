@@ -9,8 +9,9 @@ class Env2Kube extends Command {
         All of the values are base64 encoded and the secret can be used in the envFrom option on your deployments. The name of the yaml file defaults to the same as the environment file without the "dot" in front.`;
 
     static examples = [
-        `env2kube .env`,
-        `env2kube .env --output=./secrets/env.yaml`,
+        `env2kube .env --name=appsecrets`,
+        `env2kube .env --output=./secrets/env.yaml --name=appsecrets`,
+        `env2kube .env --namespace=myapp --name=appsecrets`,
     ];
 
     static flags = {
