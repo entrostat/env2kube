@@ -1,5 +1,5 @@
 {
-  "name": "env2kube",
+  "name": "@entrostat/env2kube",
   "description": "Converts an env file to a Kubernetes secret yaml file that you can apply",
   "version": "1.0.3",
   "author": "Kerren @Kerren-Entrostat",
@@ -41,7 +41,16 @@
   ],
   "homepage": "https://github.com/entrostat/env2kube",
   "keywords": [
-    "oclif"
+    "oclif",
+    "env",
+    "kubernetes",
+    "secrets",
+    "yaml",
+    "parser",
+    "converter",
+    "secret",
+    "config",
+    "k8s"
   ],
   "license": "MIT",
   "main": "lib/index.js",
