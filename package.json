@@ -1,7 +1,7 @@
 {
   "name": "env2kube",
   "description": "Converts an env file to a Kubernetes secret yaml file that you can apply",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Kerren @Kerren-Entrostat",
   "bin": {
     "env2kube": "./bin/run"
