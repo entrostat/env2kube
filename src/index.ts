@@ -1,7 +1,7 @@
 import { Command, flags } from '@oclif/command';
 import * as dotenv from 'dotenv';
 import * as path from 'path';
-import * as fs from 'fs-extra';
+import { promises as fs } from 'fs';
 
 class Env2Kube extends Command {
     static description = `Convert a .env file to a Kubernetes secret yaml file.
